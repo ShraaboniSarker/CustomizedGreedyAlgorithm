@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical"
+    tools:context=".ui.addAdvertise.AddAdvertiseActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+
+        <EditText
+            android:id="@+id/tvAddLength"
+            android:layout_width="0dp"
+            android:textSize="16dp"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"/>
+        <Button
+            android:id="@+id/btnAddLength"
+            android:layout_toRightOf="@+id/tvAddLength"
+            android:layout_width="0dp"
+            android:text="Add"
+            android:textSize="16dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"/>
+
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/rvAddList"
+    android:layout_width="match_parent"
+    android:layout_height="320dp"
+    android:layout_marginTop="10dp">
+
+</android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="2"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:textSize="16dp"
+        android:layout_marginBottom="-15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:text="Enter the time slot"
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etTimeSlot"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:textSize="16dp"
+            android:inputType="number"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="2"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:textSize="16dp"
+            android:layout_marginTop="5dp"
+            android:text="Enter the no of ad to  be shown"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etNoOfAds"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:textSize="16dp"
+            android:inputType="number"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnShowResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Show Results"
+        android:textSize="16dp"
+        android:gravity="center"/>
+</LinearLayout>
