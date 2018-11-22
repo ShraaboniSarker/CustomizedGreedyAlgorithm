@@ -1,10 +1,12 @@
 package com.example.shraboni.algorithmdesignforads.model.addvertise;
 
+import java.util.ArrayList;
+
 public class Advertise {
     private String addname;
-    private String time;
+    private Integer time;
 
-    public Advertise(String addname, String time) {
+    public Advertise(String addname, Integer time) {
         this.addname = addname;
         this.time = time;
     }
@@ -17,11 +19,20 @@ public class Advertise {
         this.addname = addname;
     }
 
-    public String getTime() {
+    public Integer getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Integer time) {
         this.time = time;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Advertise{" +
+                "addname='" + addname + '\'' +
+                ", time='" + time + '\'' +
+                '}';
     }
 }
