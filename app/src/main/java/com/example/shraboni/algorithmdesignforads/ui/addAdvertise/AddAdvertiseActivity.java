@@ -15,6 +15,7 @@ import com.example.shraboni.algorithmdesignforads.adapter.AddAdvertiseAdapter;
 import com.example.shraboni.algorithmdesignforads.model.addvertise.Advertise;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class AddAdvertiseActivity extends AppCompatActivity {
 
@@ -24,7 +25,11 @@ public class AddAdvertiseActivity extends AppCompatActivity {
     private EditText tvAddLength,etNoOfAds,etTimeSlot;
     private Button btnAddLength,btnShowResults;
     static ArrayList<ArrayList<Advertise>> probableAddList;
-    String broadCast;
+    static String broadCast;
+    static int noOfAdds;
+    int timeSlot;
+    static ArrayList<ArrayList<Advertise>> finalList;
+    static boolean flag = false;
 
 
 
@@ -40,14 +45,16 @@ public class AddAdvertiseActivity extends AppCompatActivity {
         etNoOfAds = findViewById(R.id.etNoOfAds);
         etTimeSlot = findViewById(R.id.etTimeSlot);
         probableAddList = new ArrayList<>();
+        finalList = new ArrayList<>();
         broadCast = "Dear user, you can broadcast advertise ";
         btnAddLength.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int itemNum = addList.size()+1;
-                if(tvAddLength.getText() != null && !tvAddLength.getText().toString().isEmpty() && addList.size()<= 10)
-                addList.add(new Advertise("Add "+itemNum+"  .........",tvAddLength.getText().toString()));
-                addAdvertiseAdapter.notifyDataSetChanged();
+                if(tvAddLength.getText() != null && !tvAddLength.getText().toString().isEmpty() && addList.size()< 10)
+                    addList.add(new Advertise("Add "+itemNum,Integer.parseInt(tvAddLength.getText().toString())));
+                    addAdvertiseAdapter.notifyDataSetChanged();
+                tvAddLength.setText("");
             }
         });
 
@@ -72,36 +79,40 @@ public class AddAdvertiseActivity extends AppCompatActivity {
 
     void ShowResults(){
 
-        int noOfAdds = Integer.parseInt(etNoOfAds.getText().toString());
-        int timeSlot =  Integer.parseInt(etTimeSlot.getText().toString());
+         noOfAdds = Integer.parseInt(etNoOfAds.getText().toString());
+        timeSlot =  Integer.parseInt(etTimeSlot.getText().toString());
 
-        Log.i("ShowResults", "ShowResults:................ ");
+
+        Log.i("bleh", "ShowResults: ...................... add list size "+addList.size());
+        sum_up(addList, timeSlot);
+
 
         if(String.valueOf(noOfAdds) != null && !String.valueOf(noOfAdds).isEmpty() &&
                 String.valueOf(timeSlot) != null && !String.valueOf(timeSlot).isEmpty()) {
 
-            sum_up(addList, timeSlot);
-
-            for (int i = 0; i < probableAddList.size(); i++) {
-                if (noOfAdds == probableAddList.get(i).size()) {
-                    for (int j = 0; j < probableAddList.get(i).size(); j++) {
-                        broadCast = broadCast + probableAddList.get(i).get(j).getAddname();
-
-                    }
-                }
-            }
         }
         Toast.makeText(this, broadCast, Toast.LENGTH_SHORT).show();
     }
-    static void sum_up(ArrayList<Advertise> ads, int timeSlot) {
-        sum_up_recursive(ads,timeSlot,new ArrayList<Advertise>());
-    }
+
+
+
+
     static void sum_up_recursive(ArrayList<Advertise> numbers, int target, ArrayList<Advertise> partial) {
         int s = 0;
-        for (Advertise x: partial) s += Integer.parseInt(x.getTime());
+        for (Advertise x: partial) s += x.getTime();
         if (s <= target)
-            probableAddList.add(partial);
-        Log.i("probableAddList", "sum_up_recursive:....... "+partial.size());
+            //System.out.println("sum("+Arrays.toString(partial.toArray())+")="+target);
+            Log.i("bleh", "sum_up_recursive: .................. size "+partial.size());
+        if(partial.size() == noOfAdds && flag == false){
+
+                for(int i = 0; i<partial.size();i++){
+                    broadCast = broadCast+" "+partial.get(i).getAddname();
+                }
+            flag = true;
+
+        }
+
+        Log.i("bleh ", "sum_up_recursive: ..............."+"sum("+Arrays.toString(partial.toArray())+")");
         if (s >= target)
             return;
         for(int i=0;i<numbers.size();i++) {
@@ -113,4 +124,9 @@ public class AddAdvertiseActivity extends AppCompatActivity {
             sum_up_recursive(remaining,target,partial_rec);
         }
     }
+    static void sum_up(ArrayList<Advertise> numbers, int target) {
+        sum_up_recursive(numbers,target,new ArrayList<Advertise>());
+    }
+
 }
+

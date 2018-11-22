@@ -35,7 +35,7 @@ public class AddAdvertiseAdapter extends RecyclerView.Adapter<AddAdvertiseAdapte
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
 
         myViewHolder.tvAddName.setText(list.get(i).getAddname());
-        myViewHolder.tvAddTime.setText(list.get(i).getTime());
+        myViewHolder.tvAddTime.setText(list.get(i).getTime().toString());
 
     }
 
