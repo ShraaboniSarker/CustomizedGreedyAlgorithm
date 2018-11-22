@@ -55,6 +55,7 @@ public class AddAdvertiseActivity extends AppCompatActivity {
                 addList.add(new Advertise("Add "+itemNum+"  .........",tvAddLength.getText().toString()));
                 addListDuration.add(Integer.parseInt(tvAddLength.getText().toString()));
                 addAdvertiseAdapter.notifyDataSetChanged();
+                tvAddLength.setText("");
             }
         });
 
@@ -168,7 +169,6 @@ public class AddAdvertiseActivity extends AppCompatActivity {
     }
     static void sum_up(ArrayList<Integer> numbers, int target) {
         sum_up_recursive(numbers,target,new ArrayList<Integer>());
-
     }
 
 
